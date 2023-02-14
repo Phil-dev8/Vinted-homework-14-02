@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useState } from "react";
 
-const CheckoutForm = ({ title, price }) => {
+const CheckoutForm = ({ title, price, user_id }) => {
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const stripe = useStripe();
@@ -14,7 +14,7 @@ const CheckoutForm = ({ title, price }) => {
       setLoading(true);
       const cardElement = elements.getElement(CardElement);
       const stripeResponse = await stripe.createToken(cardElement, {
-        name: "id",
+        name: user_id,
       });
       const stripeToken = stripeResponse.token.id;
       console.log(stripeToken);
@@ -26,7 +26,8 @@ const CheckoutForm = ({ title, price }) => {
           amount: price,
         }
       );
-      if (response.data === "succeeded") {
+      console.log(response.data);
+      if (response.data.status === "succeeded") {
         setLoading(false);
         setCompleted(true);
       }
@@ -41,7 +42,7 @@ const CheckoutForm = ({ title, price }) => {
       {completed ? (
         <p>Félicitations, votre commande a bien été réglée ! </p>
       ) : (
-        <button disabled={loading} type="submit">
+        <button className="to-paid" disabled={loading} type="submit">
           Payer
         </button>
       )}

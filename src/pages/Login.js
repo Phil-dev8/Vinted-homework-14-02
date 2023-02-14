@@ -29,13 +29,14 @@ const Login = ({ handleCookie }) => {
   };
 
   return (
-    <div>
-      <h1>Se connecter</h1>
+    <div className="login-div">
+      <h1 className="login-h1">Se connecter</h1>
       <form
         onSubmit={handleLogin}
         style={{ display: "flex", flexDirection: "column" }}
       >
         <input
+          className="login-input"
           type="email"
           placeholder="Votre email"
           value={email}
@@ -44,6 +45,7 @@ const Login = ({ handleCookie }) => {
           }}
         />
         <input
+          className="login-input"
           type="password"
           placeholder="Votre mot de passe"
           value={password}
@@ -51,7 +53,7 @@ const Login = ({ handleCookie }) => {
             setPassword(event.target.value);
           }}
         />
-        <input type="submit" value="Se connecter" />
+        <input className="login" type="submit" value="Se connecter" />
       </form>
       <Link to="/signup">
         Pas encore de compte? Inscris-toi en cliquant <span>ici</span> !

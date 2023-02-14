@@ -5,6 +5,7 @@ import mainpic from "../images/main-pic.jpg";
 
 // mmon composant SingleOffer
 import SingleOffer from "../components/SingleOffer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState();
@@ -32,11 +33,17 @@ const Home = () => {
       <img className="main-pic" src={mainpic} alt="main pic" />
       <div className="home">
         <p>Prêts à faire du tri dans vos placards ?</p>
-        <button className="start-to-sale">Commencer a vendre</button>
+        <Link to="/publish">
+          <button className="start-to-sale">Commencer a vendre</button>
+        </Link>
       </div>
       {data.offers.map((offer) => {
         //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
-        return <SingleOffer offerDetails={offer} key={offer._id} />;
+        return (
+          <div className="home2">
+            <SingleOffer offerDetails={offer} key={offer._id} />
+          </div>
+        );
       })}
     </div>
   );

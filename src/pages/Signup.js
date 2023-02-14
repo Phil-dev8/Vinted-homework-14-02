@@ -35,18 +35,11 @@ const Signup = ({ handleCookie }) => {
   };
 
   return (
-    <div>
-      <h1>S'inscrire</h1>
-      <form
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-        onSubmit={handleSignup}
-      >
+    <div className="signup">
+      <h1 className="signup-h1">S'inscrire</h1>
+      <form onSubmit={handleSignup}>
         <input
-          style={{ width: "150px" }}
+          className="input-signup"
           value={username}
           type="text"
           placeholder="Nom d'utilisateur"
@@ -55,7 +48,7 @@ const Signup = ({ handleCookie }) => {
           }}
         />
         <input
-          style={{ width: "150px" }}
+          className="input-signup"
           value={email}
           type="email"
           placeholder="Email"
@@ -64,7 +57,7 @@ const Signup = ({ handleCookie }) => {
           }}
         />
         <input
-          style={{ width: "150px" }}
+          className="input-signup"
           value={password}
           type="password"
           placeholder="Mot de passe"
@@ -73,6 +66,7 @@ const Signup = ({ handleCookie }) => {
           }}
         />
         <input
+          className="input-signup"
           checked={newsletter}
           type="checkbox"
           onChange={() => {
@@ -86,6 +80,7 @@ const Signup = ({ handleCookie }) => {
           18 ans.
         </p>
         <input
+          className="input-signup"
           type="submit"
           value="S'enregistrer !"
           style={{ backgroundColor: "#2aaeb7" }}
