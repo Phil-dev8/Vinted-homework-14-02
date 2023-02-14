@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
