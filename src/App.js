@@ -33,7 +33,7 @@ function App() {
     <Router>
       <Header handleCookie={handleCookie} token={token} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home token={token} />} />
         <Route path="/offer/:id" element={<Offer />} />
         <Route
           path="/signup"

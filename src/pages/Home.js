@@ -7,7 +7,7 @@ import mainpic from "../images/main-pic.jpg";
 import SingleOffer from "../components/SingleOffer";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ token }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,7 +33,7 @@ const Home = () => {
       <img className="main-pic" src={mainpic} alt="main pic" />
       <div className="home">
         <p>Prêts à faire du tri dans vos placards ?</p>
-        <Link to="/publish">
+        <Link to={token ? "/publish" : "/login"}>
           <button className="start-to-sale">Commencer a vendre</button>
         </Link>
       </div>
