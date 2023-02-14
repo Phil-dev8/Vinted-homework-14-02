@@ -1,8 +1,9 @@
-//PAGE REALISE AVEC AIDE DE LA CORRECTION, DIFFICULTE AU NIVEAU DE OBJECT.KEY
+//DIFFICULTE AU NIVEAU DE OBJECT.KEY
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Offer = () => {
   const [data, setData] = useState();
@@ -50,6 +51,12 @@ const Offer = () => {
         <p>Taille: {data.product_details.TAILLE}</p>
         <p>Etat: {data.product_details.ETAT}</p> */}
       </div>
+      <Link
+        to="/payment"
+        state={{ title: data.product_name, price: data.product_price }}
+      >
+        <button>Acheter</button>
+      </Link>
     </div>
   );
 };

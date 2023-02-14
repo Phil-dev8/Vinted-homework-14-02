@@ -17,6 +17,7 @@ const Login = ({ handleCookie }) => {
           password: password,
         }
       );
+      console.log(response.data);
       if (response.data.token) {
         handleCookie(response.data.token);
         console.log(response.data.token);
