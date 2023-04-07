@@ -74,6 +74,12 @@ header {
   position: relative;
   margin-top: 100px;
 }
+.home2 {
+  margin-top: 300px;
+  border: red solid;
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .start-to-sale {
   height: 50px;
@@ -85,9 +91,12 @@ header {
 
 /*--------------------------------------------------------------------------------
 ----------------------------SINGLEOFFER COMPONENT--------------------------------*/
-
-article {
+.offer {
+  border: solid blue;
+}
+.article {
   display: flex;
+  flex-direction: column;
 }
 
 .avatar {

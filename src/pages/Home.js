@@ -37,14 +37,16 @@ const Home = ({ token }) => {
           <button className="start-to-sale">Commencer a vendre</button>
         </Link>
       </div>
-      {data.offers.map((offer) => {
-        //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
-        return (
-          <div className="home2">
-            <SingleOffer offerDetails={offer} key={offer._id} />
-          </div>
-        );
-      })}
+      <div className="home2">
+        {data.offers.map((offer) => {
+          //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
+          return (
+            <div className="offer">
+              <SingleOffer offerDetails={offer} key={offer._id} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

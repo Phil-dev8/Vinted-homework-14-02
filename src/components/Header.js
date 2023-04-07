@@ -1,7 +1,10 @@
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = ({ handleCookie, token }) => {
+  const [search, setSearch] = useState("");
+
   return (
     <header>
       <div className="header">
@@ -10,9 +13,11 @@ const Header = ({ handleCookie, token }) => {
         </Link>
 
         <input
+          value={search}
           className="header-input"
           type="text"
           placeholder="Rechercher des articles"
+          onChange={(event) => setSearch(event.target.value)}
         />
       </div>
       {token ? (
