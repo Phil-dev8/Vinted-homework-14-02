@@ -1,16 +1,14 @@
-//DIFFICULTE AU NIVEAU DE OBJECT.KEY
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "../styles/pages/Offer.css";
 
 const Offer = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const id = params.id;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,34 +27,45 @@ const Offer = () => {
   return loading ? (
     <p>Chargement en cours</p>
   ) : (
-    <div className="offer">
-      <div>
-        <img src={data.product_image.secure_url} alt="pic-offer" />
-      </div>
-      <div>
-        <span>{data.product_price}</span>
-        {data.product_details.map((detail, index) => {
-          const key = Object.keys(detail)[0];
-          return (
-            <div key={index}>
-              <span>{key}</span> <span>{detail[key]}</span>
+    <div className="offer-wrapper">
+      <div className="offer-container">
+        <img
+          className="offer-image"
+          src={data.product_image.secure_url}
+          alt="pic-offer"
+        />
+        <div className="offer-details">
+          <div>
+            <p className="offer-price"> {data.product_price} €</p>
+            <div className="details-header">
+              {data.product_details.map((detail, index) => {
+                const nameDetails = Object.keys(detail)[0];
+                const valueDetails = detail[nameDetails];
+
+                return (
+                  <div className="details-wrapper" key={index}>
+                    <p className="name-details">{nameDetails}</p>
+                    <p>{valueDetails}</p>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-        <p>{data.product_name}</p>
-        <p>{data.product_description}</p>
-        <p>{data.owner.account.username}</p>
-        {/* MON CODE AVANT LA CORRECTION
-         <p>Marque: {data.product_details.MARQUE}</p>
-        <p>Taille: {data.product_details.TAILLE}</p>
-        <p>Etat: {data.product_details.ETAT}</p> */}
+          </div>
+          <div className="divider"></div>
+          <div className="details-footer">
+            <p className="name-product">{data.product_name}</p>
+            <p className="description-product">{data.product_description}</p>
+            <p className="user-product">{data.owner.account.username}</p>
+          </div>
+          <Link
+            className="buy-button"
+            to="/payment"
+            state={{ title: data.product_name, price: data.product_price }}
+          >
+            Acheter
+          </Link>
+        </div>
       </div>
-      <Link
-        to="/payment"
-        state={{ title: data.product_name, price: data.product_price }}
-      >
-        <button>Acheter</button>
-      </Link>
     </div>
   );
 };

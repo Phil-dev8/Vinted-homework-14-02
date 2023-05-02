@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-//L'image en dessous du header (voir plus tard pour l'effet déchiré)
-import mainpic from "../images/main-pic.jpg";
+import "../styles/pages/Home.css";
+import { TearSvg } from "../images/Tear";
 
-// mmon composant SingleOffer
-import SingleOffer from "../components/SingleOffer";
+import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
 const Home = ({ token }) => {
@@ -29,22 +28,24 @@ const Home = ({ token }) => {
   return isLoading ? (
     <p>Chargement en cours...</p>
   ) : (
-    <div>
-      <img className="main-pic" src={mainpic} alt="main pic" />
-      <div className="home">
-        <p>Prêts à faire du tri dans vos placards ?</p>
-        <Link to={token ? "/publish" : "/login"}>
-          <button className="start-to-sale">Commencer a vendre</button>
-        </Link>
+    <div className="">
+      <div className="home-wrapper">
+        <div className="home-info">
+          <p className="home-title-info">
+            Prêts à faire du tri dans vos placards ?
+          </p>
+          <Link to={token ? "/publish" : "/login"}>
+            <button className="start-to-sale">Commencer a vendre</button>
+          </Link>
+        </div>
+        <div className="home-tear">
+          <TearSvg />
+        </div>
       </div>
-      <div className="home2">
+      <div className="cards-wrapper">
         {data.offers.map((offer) => {
           //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
-          return (
-            <div className="offer">
-              <SingleOffer offerDetails={offer} key={offer._id} />
-            </div>
-          );
+          return <Card offerDetails={offer} key={offer._id} />;
         })}
       </div>
     </div>

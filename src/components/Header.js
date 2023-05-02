@@ -1,25 +1,24 @@
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import "../styles/components/header.css";
 
 const Header = ({ handleCookie, token }) => {
   const [search, setSearch] = useState("");
 
   return (
-    <header>
-      <div className="header">
-        <Link to="/">
-          <img src={logo} alt="logo de la marque" />
-        </Link>
+    <header className="header-wrapper">
+      <Link className="header-link-image" to="/">
+        <img src={logo} alt="logo de la marque" />
+      </Link>
 
-        <input
-          value={search}
-          className="header-input"
-          type="text"
-          placeholder="Rechercher des articles"
-          onChange={(event) => setSearch(event.target.value)}
-        />
-      </div>
+      <input
+        value={search}
+        className="header-input"
+        type="text"
+        placeholder="Rechercher des articles"
+        onChange={(event) => setSearch(event.target.value)}
+      />
       {token ? (
         <div className="button">
           <button
@@ -36,17 +35,17 @@ const Header = ({ handleCookie, token }) => {
         </div>
       ) : (
         <>
-          <div className="button">
-            <Link to="signup">
-              <button className="signin-button">S'inscrire</button>
+          <div className="auth-wrapper">
+            <Link className="auth-link" to="signup">
+              S'inscrire
             </Link>
 
-            <Link to="/login">
-              <button className="login-button">Se connecter</button>
+            <Link className="auth-link" to="/login">
+              Se connecter
             </Link>
           </div>
-          <Link to={token ? "/publish" : "/login"}>
-            <button className="sale-it">Vends tes articles</button>
+          <Link className="sale-it-link" to={token ? "/publish" : "/login"}>
+            Vends tes articles
           </Link>
         </>
       )}

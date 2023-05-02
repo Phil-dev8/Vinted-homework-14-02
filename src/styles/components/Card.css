@@ -1,0 +1,44 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 0 0 0 5px;
+  display: flex;
+  align-items: center;
+  height: 45px;
+  column-gap: 10px;
+}
+
+.avatar-card {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.name-card {
+  color: #999;
+  font-size: 12px;
+}
+
+.card-details-link {
+  text-decoration: none;
+}
+
+.image-card {
+  width: 230px;
+  height: 360px;
+  object-fit: cover;
+}
+
+.card-footer {
+  padding: 5px 0 0 0;
+  color: #999;
+  font-size: 13px;
+}
+
+.card-price {
+  color: black;
+  font-size: 20px;
+}
