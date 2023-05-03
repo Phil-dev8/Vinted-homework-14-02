@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import "../styles/pages/Login.css";
 
 const Login = ({ handleCookie }) => {
   const [email, setEmail] = useState("");
@@ -29,35 +30,34 @@ const Login = ({ handleCookie }) => {
   };
 
   return (
-    <div className="login-div">
-      <h1 className="login-h1">Se connecter</h1>
-      <form
-        onSubmit={handleLogin}
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <input
-          className="login-input"
-          type="email"
-          placeholder="Votre email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <input
-          className="login-input"
-          type="password"
-          placeholder="Votre mot de passe"
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-        <input className="login" type="submit" value="Se connecter" />
-      </form>
-      <Link to="/signup">
-        Pas encore de compte? Inscris-toi en cliquant <span>ici</span> !
-      </Link>
+    <div className="login-wrapper">
+      <div className="login-content">
+        <h1 className="login-title">Se connecter</h1>
+        <form onSubmit={handleLogin} className="login-form">
+          <input
+            className="login-input"
+            type="email"
+            placeholder="Adresse email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <input className="login-submit" type="submit" value="Se connecter" />
+        </form>
+        <Link className="signup-link" to="/signup">
+          Pas encore de compte? Inscris-toi !
+        </Link>
+      </div>
     </div>
   );
 };

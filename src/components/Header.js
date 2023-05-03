@@ -20,7 +20,7 @@ const Header = ({ handleCookie, token }) => {
         onChange={(event) => setSearch(event.target.value)}
       />
       {token ? (
-        <div className="button">
+        <div className="signout-wrapper">
           <button
             className="signout-button"
             onClick={() => {
@@ -29,8 +29,11 @@ const Header = ({ handleCookie, token }) => {
           >
             Se Deconnecter
           </button>
-          <Link to={token ? "/publish" : "/login"}>
-            <button className="sale-it">Vends tes articles</button>
+          <Link
+            className="sale-it-link-signout "
+            to={token ? "/publish" : "/login"}
+          >
+            Vends tes article
           </Link>
         </div>
       ) : (

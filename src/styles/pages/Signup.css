@@ -1,0 +1,89 @@
+.signup-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.signup-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 25%;
+  align-items: center;
+}
+
+.signup-title {
+  font-size: 32px;
+  margin-top: 50px;
+}
+
+.signup-form {
+  padding: 30px 0 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  row-gap: 20px;
+}
+
+.input-signup {
+  width: 100%;
+  height: 35px;
+  border: none;
+  border-bottom: 1px solid #fcced3;
+  outline: none;
+}
+
+.input-signup::placeholder {
+  color: #cecfd0;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.signup-submit {
+  width: 100%;
+  height: 45px;
+  background-color: #2aaeb7;
+  color: white;
+  font-size: 16px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newsletter-wrapper {
+  margin: 20px 0 0 0;
+  padding: 0 0 0 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  column-gap: 25px;
+}
+
+.newsletter-checkbox {
+  margin: 0;
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(2);
+  cursor: pointer;
+  color: #2cb1ba;
+}
+
+.newsletter-text {
+  font-size: 20px;
+  letter-spacing: 0.8px;
+  color: #666;
+}
+
+.cgu-description {
+  color: #999;
+}
+
+.login-link {
+  color: #2cb1ba;
+  font-size: 12px;
+  text-decoration: none;
+}
