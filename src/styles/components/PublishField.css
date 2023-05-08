@@ -1,0 +1,33 @@
+.publish-field-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #dadbdb;
+}
+
+.publish-no-border {
+  border-bottom: none;
+}
+
+.publish-field-content {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.publish-field-input {
+  width: 50%;
+  border: none;
+  border-bottom: 1px solid #dadbdb;
+  outline: none;
+}
+
+.publish-field-input:focus {
+  border-bottom: 1px solid #30aeb7;
+}
+
+.publish-field-input::placeholder {
+  color: #dadbdb;
+}
+
+.scribens-layout {
+  display: none !important;
+}

@@ -1,24 +1,21 @@
-import "./App.css";
-//package pour naviguer entre pages
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// package pour créer les states
 import { useState } from "react";
-//utilisation du package js-cookie dans signup et login
 import Cookies from "js-cookie";
-
-//pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Publish from "./pages/Publish";
 import Payment from "./pages/Payment";
-
-//components
 import Header from "./components/Header";
+import { DEFAULT_RANGE_VALUES } from "./components/RangeFilter";
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("auth-token") || null);
+  const [rangeValues, setRangeValues] = useState(DEFAULT_RANGE_VALUES);
+  const [rangeValuesIsActive, setRangeValuesIsActive] = useState(false);
+
   const handleCookie = (token) => {
     if (token) {
       setToken(token);
@@ -29,11 +26,32 @@ function App() {
     }
   };
 
+  const onChangeRangeValues = (newRangeValues) =>
+    setRangeValues(newRangeValues);
+
+  const onChangeRangeValuesIsActive = () =>
+    setRangeValuesIsActive((prev) => !prev);
+
   return (
     <Router>
-      <Header handleCookie={handleCookie} token={token} />
+      <Header
+        handleCookie={handleCookie}
+        token={token}
+        onChangeRangeValues={onChangeRangeValues}
+        onChangeRangeValuesIsActive={onChangeRangeValuesIsActive}
+        rangeValuesIsActive={rangeValuesIsActive}
+      />
       <Routes>
-        <Route path="/" element={<Home token={token} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              token={token}
+              rangeValues={rangeValues}
+              rangeValuesIsActive={rangeValuesIsActive}
+            />
+          }
+        />
         <Route path="/offer/:id" element={<Offer />} />
         <Route
           path="/signup"

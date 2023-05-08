@@ -22,6 +22,11 @@
 
 .header-wrapper {
   display: flex;
+  flex-direction: column;
+}
+
+.header-search {
+  display: flex;
   justify-content: space-around;
   align-items: center;
   height: 80px;
@@ -91,4 +96,23 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.header-filter {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.price-filter {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.range-filter {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  width: 50%;
 }

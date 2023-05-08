@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../styles/components/Card.css";
 
 const Card = ({ offerDetails }) => {
-  console.log(offerDetails);
   return (
     <article className="card-wrapper">
       <div className="card-header">

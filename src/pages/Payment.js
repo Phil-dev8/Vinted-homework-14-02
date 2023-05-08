@@ -1,44 +1,60 @@
-//Warning dans l'inspecteur, si je comprends bien, react n'aime pas que je modifie la prop une fois que je l'ai parametrer? Mais il m'indique la prop `stripe`
 import { useLocation } from "react-router-dom";
 import CheckoutForm from "../components/CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import "../styles/pages/Payment.css";
+import { useMemo } from "react";
 
 const Payment = () => {
   const location = useLocation();
   const { title, price, user_id } = location.state;
-  console.log(title);
-  const stripePromise = loadStripe(
-    "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
-  );
+  console.log(process.env.STRIPE_TOKEN);
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TOKEN);
 
-  let shippingFees = price * 0.2;
-  let protectionFees = price * 0.1;
-  let totalPrice = price + shippingFees + protectionFees;
-  //console.log(shippingFees);
-  //console.log(protectionFees);
+  const { shippingFees, protectionFees, totalPrice } = useMemo(() => {
+    const shippingFees = price * 0.2;
+    const protectionFees = price * 0.1;
+    const totalPrice = price + shippingFees + protectionFees;
+
+    return {
+      shippingFees: shippingFees.toFixed(2),
+      protectionFees: protectionFees.toFixed(2),
+      totalPrice: totalPrice.toFixed(2),
+    };
+  }, [price]);
 
   return (
-    <div className="infos-payment">
-      <p>Résumé de la commande</p>
-      <div>
-        <span>{title}</span> <span>{price}€</span>
+    <div className="payment-wrapper">
+      <div className="payment-container">
+        <p className="payment-title">Résumé de la commande</p>
+        <div className="payment-details-wrapper">
+          <div>
+            <p>{title}</p> <p>{price}€</p>
+          </div>
+          <div>
+            <p>Frais protection acheteur</p>
+            <p> {protectionFees}€</p>
+          </div>
+          <div>
+            <p>Frais de port</p> <p>{shippingFees}€</p>
+          </div>
+        </div>
+        <div className="divider"></div>
+        <div className="payment-total-price-wrapper">
+          <p>Total</p>
+          <p>{totalPrice}€</p>
+        </div>
+        <div className="payment-step">
+          Il ne vous reste plus qu'un étape pour vous offrir
+          <span className="payment-bold">{title}</span>. Vous allez payer
+          <span className="payment-bold">{totalPrice}€</span> (frais de
+          protection et frais de port inclus).
+        </div>
+        <div className="divider"></div>
+        <Elements stripe={stripePromise}>
+          <CheckoutForm title={title} price={price} user_id={user_id} />
+        </Elements>
       </div>
-      <div>
-        <span>Frais protection acheteur</span>
-        <span> {protectionFees}€</span>
-      </div>
-      <div>
-        <span>Frais de port</span> <span>{shippingFees}€</span>
-      </div>
-      <div>
-        <span className="total">
-          Montant total de la commande: {totalPrice}€
-        </span>
-      </div>
-      <Elements stripe={stripePromise}>
-        <CheckoutForm title={title} price={price} user_id={user_id} />
-      </Elements>
     </div>
   );
 };

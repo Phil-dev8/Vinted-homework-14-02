@@ -6,8 +6,9 @@ import { TearSvg } from "../images/Tear";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
-const Home = ({ token }) => {
+const Home = ({ token, rangeValues, rangeValuesIsActive }) => {
   const [data, setData] = useState();
+  const [filteredData, setFilteredData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,8 +17,8 @@ const Home = ({ token }) => {
         const response = await axios.get(
           "https://lereacteur-vinted-api.herokuapp.com/offers"
         );
-        console.log(response.data);
-        setData(response.data);
+        setData(response.data.offers);
+        setFilteredData(response.data.offers);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -25,6 +26,19 @@ const Home = ({ token }) => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const dataCopy = [...(data || [])];
+
+    const filteredDataCopy = dataCopy.filter(
+      (offer) =>
+        offer.product_price >= rangeValues[0] &&
+        offer.product_price <= rangeValues[1]
+    );
+
+    setFilteredData(filteredDataCopy);
+  }, [rangeValues]);
+
   return isLoading ? (
     <p>Chargement en cours...</p>
   ) : (
@@ -43,7 +57,7 @@ const Home = ({ token }) => {
         </div>
       </div>
       <div className="cards-wrapper">
-        {data.offers.map((offer) => {
+        {(rangeValuesIsActive ? filteredData : data)?.map((offer) => {
           //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
           return <Card offerDetails={offer} key={offer._id} />;
         })}

@@ -1,0 +1,70 @@
+.payment-wrapper {
+  background: #ebedee;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+}
+
+.payment-container {
+  margin: 40px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 600px;
+  width: 50%;
+  background: white;
+}
+
+.payment-title {
+  color: #999;
+}
+
+.payment-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 15px;
+}
+
+.payment-details-wrapper div {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #ebedee;
+}
+
+.payment-total-price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.to-paid {
+  color: white;
+  background-color: #2aaeb7;
+  border-radius: 5px;
+  border: none;
+  height: 32px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.card-field-wrapper {
+  display: flex;
+  box-shadow: #999999 0px 0px 5px;
+}
+
+.payment-step {
+  width: 100%;
+}
+
+.payment-bold {
+  margin: 0 0 0 5px;
+  font-weight: 600;
+}
