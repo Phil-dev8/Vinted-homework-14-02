@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import "../styles/pages/Login.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = ({ handleCookie }) => {
   const [email, setEmail] = useState("");
@@ -18,19 +19,19 @@ const Login = ({ handleCookie }) => {
           password: password,
         }
       );
-      console.log(response.data);
+
       if (response.data.token) {
         handleCookie(response.data.token);
-        console.log(response.data.token);
         navigate("/");
       }
     } catch (error) {
-      console.log(error.response.data);
+      toast.error(error.response.data.message);
     }
   };
 
   return (
     <div className="login-wrapper">
+      <Toaster />
       <div className="login-content">
         <h1 className="login-title">Se connecter</h1>
         <form onSubmit={handleLogin} className="login-form">

@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../styles/pages/Home.css";
 import { TearSvg } from "../images/Tear";
 
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 
-const Home = ({ token, rangeValues, rangeValuesIsActive }) => {
+const Home = ({ token, rangeValues, rangeValuesIsActive, search }) => {
   const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +25,7 @@ const Home = ({ token, rangeValues, rangeValuesIsActive }) => {
       }
     };
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -36,8 +37,24 @@ const Home = ({ token, rangeValues, rangeValuesIsActive }) => {
         offer.product_price <= rangeValues[1]
     );
 
-    setFilteredData(filteredDataCopy);
-  }, [rangeValues]);
+    if (search) {
+      const dataToFilter = rangeValuesIsActive ? filteredDataCopy : dataCopy;
+
+      const filteredDataBySearch = dataToFilter.filter((offer) => {
+        return offer.product_name.toLowerCase().includes(search.toLowerCase());
+      });
+
+      setFilteredData(filteredDataBySearch);
+    } else {
+      setFilteredData(filteredDataCopy);
+    }
+    // eslint-disable-next-line
+  }, [rangeValues, search]);
+
+  const dataIsFiltered = useMemo(
+    () => rangeValuesIsActive || search,
+    [rangeValuesIsActive, search]
+  );
 
   return isLoading ? (
     <p>Chargement en cours...</p>
@@ -57,8 +74,7 @@ const Home = ({ token, rangeValues, rangeValuesIsActive }) => {
         </div>
       </div>
       <div className="cards-wrapper">
-        {(rangeValuesIsActive ? filteredData : data)?.map((offer) => {
-          //je transfère la prop offer a mon composant et utilise l'id pour supprimer le warning
+        {(dataIsFiltered ? filteredData : data)?.map((offer) => {
           return <Card offerDetails={offer} key={offer._id} />;
         })}
       </div>

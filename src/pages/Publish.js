@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import "../styles/pages/Publish.css";
-import { useNavigate } from "react-router-dom";
 import { PublishField } from "../components/PublishField";
+import { useNavigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [pictures, setPictures] = useState([]);
@@ -93,7 +93,6 @@ const Publish = ({ token }) => {
                 setTitle(value);
               }}
             />
-
             <PublishField
               name="Description"
               type="textarea"

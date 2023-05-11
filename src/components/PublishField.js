@@ -8,7 +8,6 @@ export const PublishField = ({
   type,
   isLastChild,
 }) => {
-  console.log(value);
   return (
     <div
       className={`publish-field-wrapper ${isLastChild && "publish-no-border"}`}

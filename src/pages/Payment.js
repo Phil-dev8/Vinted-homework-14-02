@@ -8,7 +8,7 @@ import { useMemo } from "react";
 const Payment = () => {
   const location = useLocation();
   const { title, price, user_id } = location.state;
-  console.log(process.env.STRIPE_TOKEN);
+
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_TOKEN);
 
   const { shippingFees, protectionFees, totalPrice } = useMemo(() => {

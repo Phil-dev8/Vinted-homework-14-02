@@ -17,10 +17,7 @@ export const RangeFilter = ({ setRangeValues }) => {
       max={MAX}
       values={rangeDefaultValues}
       onChange={(values) => setRangeDefaultValues(values)}
-      onFinalChange={(values) => {
-        console.log(setRangeValues(values));
-        // setRangeValues ? setRangeValues(values) : null;
-      }}
+      onFinalChange={(values) => setRangeValues && setRangeValues(values)}
       renderTrack={({ props, children }) => (
         <div
           style={{

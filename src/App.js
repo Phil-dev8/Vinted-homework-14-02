@@ -15,6 +15,7 @@ function App() {
   const [token, setToken] = useState(Cookies.get("auth-token") || null);
   const [rangeValues, setRangeValues] = useState(DEFAULT_RANGE_VALUES);
   const [rangeValuesIsActive, setRangeValuesIsActive] = useState(false);
+  const [search, setSearch] = useState("");
 
   const handleCookie = (token) => {
     if (token) {
@@ -32,6 +33,8 @@ function App() {
   const onChangeRangeValuesIsActive = () =>
     setRangeValuesIsActive((prev) => !prev);
 
+  const onChangeSearch = (newSearch) => setSearch(newSearch);
+
   return (
     <Router>
       <Header
@@ -40,6 +43,8 @@ function App() {
         onChangeRangeValues={onChangeRangeValues}
         onChangeRangeValuesIsActive={onChangeRangeValuesIsActive}
         rangeValuesIsActive={rangeValuesIsActive}
+        onChangeSearch={onChangeSearch}
+        search={search}
       />
       <Routes>
         <Route
@@ -49,6 +54,7 @@ function App() {
               token={token}
               rangeValues={rangeValues}
               rangeValuesIsActive={rangeValuesIsActive}
+              search={search}
             />
           }
         />

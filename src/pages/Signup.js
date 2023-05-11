@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/pages/Signup.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const Signup = ({ handleCookie }) => {
   const [username, setUsername] = useState("");
@@ -26,17 +27,17 @@ const Signup = ({ handleCookie }) => {
         }
       );
       if (response.data.token) {
-        //console.log        response.data.token;
         handleCookie(response.data.token);
         navigate("/");
       }
     } catch (error) {
-      console.log(error.response, "NO WAY");
+      toast.error(error.response.data.message);
     }
   };
 
   return (
     <div className="signup-wrapper">
+      <Toaster />
       <div className="signup-content">
         <h1 className="signup-title">S'inscrire</h1>
         <form onSubmit={handleSignup} className="signup-form">

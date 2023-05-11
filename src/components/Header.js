@@ -1,6 +1,5 @@
 import logo from "../images/logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import "../styles/components/header.css";
 import "../styles/components/ToggleButton.css";
 import { RangeFilter } from "./RangeFilter";
@@ -11,8 +10,9 @@ const Header = ({
   onChangeRangeValues,
   onChangeRangeValuesIsActive,
   rangeValuesIsActive,
+  search,
+  onChangeSearch,
 }) => {
-  const [search, setSearch] = useState("");
   const location = useLocation();
 
   return (
@@ -27,7 +27,7 @@ const Header = ({
           className="header-input"
           type="text"
           placeholder="Rechercher des articles"
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={(event) => onChangeSearch(event.target.value)}
         />
         {token ? (
           <div className="signout-wrapper">
